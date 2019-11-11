@@ -11,5 +11,16 @@ export class CreatenewteamComponent implements OnInit {
 
   ngOnInit() {
   }
+  companyId;
+  companyName;
+  emailId;
+  phone;
+  password;
+  repeatPassword;
+
+  registerCompany()
+  {
+    
+  }
 
 }

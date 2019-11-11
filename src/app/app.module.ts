@@ -5,21 +5,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { CreatenewteamComponent } from './components/createnewteam/createnewteam.component';
-import {SigninService} from './services/signin.service';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { AdminhomepageComponent } from './components/adminhomepage/adminhomepage.component';
+import { UserhomepageComponent } from './components/userhomepage/userhomepage.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CreatenewteamComponent,
-    HomepageComponent
+    HomepageComponent,
+    LogoutComponent,
+    AdminhomepageComponent,
+    UserhomepageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [SigninService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
