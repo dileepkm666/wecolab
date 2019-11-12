@@ -4,18 +4,20 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { CreatenewteamComponent } from './components/createnewteam/createnewteam.component';
+import { CreatenewcompanyComponent } from './components/createnewcompany/createnewcompany.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AdminhomepageComponent } from './components/adminhomepage/adminhomepage.component';
 import { UserhomepageComponent } from './components/userhomepage/userhomepage.component';
 import {FormsModule} from '@angular/forms';
+import {CompanyregisterationService} from './services/companyregisteration.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CreatenewteamComponent,
+    CreatenewcompanyComponent,
     HomepageComponent,
     LogoutComponent,
     AdminhomepageComponent,
@@ -24,9 +26,10 @@ import {FormsModule} from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CompanyregisterationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
