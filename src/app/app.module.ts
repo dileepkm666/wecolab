@@ -11,7 +11,8 @@ import { AdminhomepageComponent } from './components/adminhomepage/adminhomepage
 import { UserhomepageComponent } from './components/userhomepage/userhomepage.component';
 import {FormsModule} from '@angular/forms';
 import {CompanyregisterationService} from './services/companyregisteration.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {BasicAuthHttpInterceptorService} from './services/basic-auth-http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,11 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [CompanyregisterationService],
+  providers: [
+    {  
+      provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true 
+    },
+    CompanyregisterationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

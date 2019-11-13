@@ -15,18 +15,18 @@ export class JwtResponse{
 export class AuthenticationService {
 
   constructor(private httpClient:HttpClient) { }
-  authenticate(username,password)
+  authenticate(username:string,password:string)
   {
-    return this.httpClient.post<any>('http://localhost:8888/authenticate',{username,password}).pipe
-    {
+    return this.httpClient.post<any>('http://localhost:8888/api/v1/authenticate',{username,password}).pipe
+    (
       map(userData =>{
         sessionStorage.setItem('username',username);
         let tokenStr='Bearer '+userData;
         sessionStorage.setItem('token',tokenStr);
-        return userData;
+        console.log(userData);
       }
         )
-    }
+    )
   }
 
   isUserLoggedIn()
