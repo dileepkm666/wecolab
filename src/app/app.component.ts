@@ -13,7 +13,7 @@ export class AppComponent {
  navBarCollapse()
   {
     this.navbarOpen=false;
-    console.log(this.navbarOpen+"khjkfwj");
+    
   }
   toggleNavBar()
   {

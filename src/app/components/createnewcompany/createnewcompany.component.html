@@ -1,37 +1,56 @@
 <div class="signup-form">
-      <form #companyModel="ngForm">
+      <form [formGroup]="companyForm" (ngSubmit)="onRegister()">
         <h3>Register A Company</h3>
           <div class="form-group">
-            <input type="text" #companyId="ngModel" [class.is-invalid]="companyId.invalid && companyId.touched" class="form-control" [(ngModel)]="company.companyId" name="companyId" placeholder="Company Id" required="required">      	
-            <small class="text-danger" [class.d-none]="companyId.valid || companyId.untouched">company Id required</small>
+            <input type="number" formControlName="companyId" class="form-control" placeholder="Company Id">      	
+            <div id="error" *ngIf="companyId.invalid && (companyId.dirty || companyId.touched)">
+              <small  *ngIf="companyId.errors['required']">CompanyId required</small>
+              <small *ngIf="companyId.errors?.min">must be 12 digits</small>
+              <small *ngIf="companyId.errors?.max">must be 12 digits</small>
+            </div>
          </div>
          <div class="form-group">
-            <input type="text" #companyName="ngModel" [class.is-invalid]="companyName.invalid && companyName.touched" class="form-control" [(ngModel)]="company.companyName" name="companyName" placeholder="Company Name" required="required">      	
-            <small class="text-danger" [class.d-none]="companyName.valid || companyName.untouched">company Name is Required</small>
+            <input type="text" formControlName="companyName" class="form-control"  name="companyName" placeholder="Company Name">      	
+            <div id="error" *ngIf="companyName.invalid && (companyName.dirty || companyName.touched)">
+              <small  *ngIf="companyName.errors['required']">CompanyName required</small>
+              <small></small>
+            </div>
          </div>
          <div class="form-group">
-             <input type="email" #emailId="ngModel" [class.is-invalid]="emailId.invalid && emailId.touched" class="form-control" [(ngModel)]="company.emailId" name="emailId" placeholder="EmailId" required="required">
-             <small class="text-danger" [class.d-none]="emailId.valid || emailId.untouched">EmailId is required</small>
+             <input type="email" formControlName="emailId" class="form-control"  name="emailId" placeholder="EmailId" emailValidator>
+             <div id="error" *ngIf="emailId.invalid && (emailId.dirty || emailId.touched)">
+              <small  *ngIf="emailId.errors['required']">emailId required</small>
+              <small *ngIf="emailId.errors['pattern']">invalid emailId</small>
+              <small *ngIf="emailId.errors['emailValidator']">emailId already exist</small>
+            </div>
          </div>
-         <div class="form-group">
-               
-            <input name="phone" #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" class="form-control" [(ngModel)]="company.phone" placeholder="Phone number" type="tel" required>
-            <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">phone Id required</small>     
+         <div class="form-group">      
+            <input type="tel" formControlName="phone" name="phone"  class="form-control"  placeholder="Phone number">
+            <div id="error" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+              <small  *ngIf="phone.errors['required']">phone number required</small>
+              <small></small>
+            </div>
          </div>
-      
         <div class="form-group">
-              <input type="password" validateEqual="confirmPassword" reverse="true" #password="ngModel" [class.is-invalid]="password.invalid && password.touched"class="form-control" [(ngModel)]="company.password" name="password" placeholder="Password" required="required">
-              <small class="text-danger" [class.d-none]="password.valid || (password.pristine && !companyModel.submitted)">password is required</small>
+              <input type="password" formControlName="password" class="form-control" placeholder="Password">
+              <div id="error" *ngIf="password.invalid && (password.dirty || password.touched)">
+                <small  *ngIf="password.errors['required']">password required</small>
+              </div>
         </div>
         <div class="form-group">
-              <input type="password"  validateEqual="password"  reverse="false" #confirmPassword="ngModel" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched" [(ngModel)]="retypePassword" class="form-control" name="confirmPassword" placeholder="Confirm Password" required="required">
-              <small class="text-danger" [class.d-none]="confirmPassword.valid || (confirmPassword.pristine && !companyModel.submitted)">password mismatch</small>
+              <input type="password" formControlName="confirmPassword" class="form-control" name="confirmPassword" placeholder="Confirm Password" passwordValidator="password" >
+              <div id="error" *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
+                <small  *ngIf="confirmPassword.errors['required']">confirmPassword required</small>
+                <small *ngIf="confirmPassword.errors['passwordValidator'] && confirmPassword.dirty">passwords didn't match,try again</small>
+              </div>
           </div>        
           <div class="form-group">
-           <label class="checkbox-inline"><input type="checkbox" #tandc="ngModel" [class.is-invalid]="tandc.invalid" name="tac" [(ngModel)]="tac" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+           <label class="checkbox-inline">
+             <input type="checkbox" name="termAndCondition" formControlName="termAndCondition" > I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>
+            </label>
           </div>
         <div class="form-group">
-              <button type="button" (click)="onRegister()" [disabled]="!companyModel.valid" class="btn btn-success btn-lg btn-block">Register Now</button>
+              <button type="submit" [disabled]="companyForm.invalid" class="btn btn-success btn-lg btn-block">Register Now</button>
           </div>
           <div class="text-center">Already have an account? <a >Sign in</a></div>
       </form>

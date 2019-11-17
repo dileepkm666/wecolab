@@ -1,5 +1,10 @@
 export class Company 
 {
+    companyId:string;
+    companyName:string;
+    emailId:string;
+    phone:string;
+    password:string
     constructor(
         companyId:string,
         companyName:string,
@@ -7,5 +12,11 @@ export class Company
         phone:string,
         password:string
     )
-    {}
+    {
+        this.companyId=companyId;
+        this.companyName=companyName;
+        this.emailId=emailId;
+        this.phone=phone;
+        this.password=password;
+    }
 }
