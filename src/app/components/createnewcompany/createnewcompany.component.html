@@ -52,7 +52,7 @@
         <div class="form-group">
               <button type="submit" [disabled]="companyForm.invalid" class="btn btn-success btn-lg btn-block">Register Now</button>
           </div>
-          <div class="text-center">Already have an account? <a >Sign in</a></div>
+          <div class="text-center">Already have an account? <a [routerLink]="['/signIn']">Sign in</a></div>
       </form>
      
   </div>

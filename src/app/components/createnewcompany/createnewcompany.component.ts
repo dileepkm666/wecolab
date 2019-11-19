@@ -51,7 +51,7 @@ export class CreatenewcompanyComponent implements OnInit {
     //this.company=new Company("1","demo","dileepkm6@gmail.com","111111111","111");
     console.log(this.company);
     this.register.registerCompany(this.company).subscribe(
-      response => console.log(response)
+      response => console.log(response.body)
     );
  }
 }
